@@ -25,7 +25,8 @@ function! s:ScreenSend(config, text)
         \ " -X eval \"readreg p " . g:slime_paste_file . "\"")
   call system("screen -S " . shellescape(a:config["sessionname"]) . " -p " . shellescape(a:config["windowname"]) .
         \ " -X paste p")
-  call system('screen -X colon ""')
+  call system('screen -X colon "
+"')
 endfunction
 
 function! s:ScreenSessionNames(A,L,P)
@@ -132,7 +133,7 @@ function! s:WeztermSend(config, text)
 
   " trailing newline
   if has_crlf
-    call system("wezterm cli send-text --no-paste --pane-id=" . shellescape(a:config["pane_id"]), "\n")
+    call system("wezterm cli send-text --no-paste --pane-id=" . shellescape(a:config["pane_id"]), "\r\n")
   end
 endfunction
 
